@@ -66,6 +66,14 @@ def expand_numbers(text):
   return normalize_numbers(text)
 
 
+def chinese_cleaners(text):
+  '''Pipeline for Chinese text'''
+  text = number_to_chinese(text)
+  text = chinese_to_bopomofo(text)
+  text = latin_to_bopomofo(text)
+  text = re.sub(r'([ˉˊˇˋ˙])$', r'\1。', text)
+  return text
+  
 def lowercase(text):
   return text.lower()
 
